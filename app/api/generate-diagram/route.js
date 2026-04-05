@@ -51,10 +51,11 @@ ${repoContext.vitalFiles}
 Rules:
 1. Output ONLY the raw Mermaid code inside markdown formatting (e.g. \`\`\`mermaid). I will extract it.
 2. Ensure relationships are proper and standard Mermaid syntax is followed perfectly.
-3. For ER Diagrams: DO NOT use quotes, spaces, or descriptions inside the Entity attribute definitions. Only use strict 'type name' syntax (e.g., 'string id PK', 'int user_id').
-4. For Sequence/Architecture/Deployment: Map the inferred components based on package files, docker-compose, or folder layers. ALWAYS use 'flowchart TD' or 'graph TD' as the root declaration. Do NOT hallucinate types like 'deploymentDiagram'.
-5. CRITICAL: Node and Subgraph IDs MUST be strictly alphanumeric with no spaces. If you need spaces for display names, use label syntax (e.g. ClientEnv["Client Environment"] or subgraph ClientEnv ["Client Environment"]). 
-6. ALL flowchart connections MUST use standard arrows (e.g., '-->') and be placed on their own separate lines. Do not write multiple disconnected nodes on the same line. Do not apologize or return conversational text.
+3. For ER Diagrams: DO NOT use quotes, constraints, or descriptions inside the Entity attribute definitions. Only use strict 'type name' syntax (e.g., 'string id PK', 'int user_id').
+4. CRITICAL FOR ER: EACH attribute MUST be on its own separate newline. The opening '{' and closing '}' MUST be on their own separate newlines. Never write attributes on the same line as the braces.
+5. For Sequence/Architecture/Deployment: Map the inferred components based on package files, docker-compose, or folder layers. ALWAYS use 'flowchart TD' or 'graph TD' as the root declaration. Do NOT hallucinate types like 'deploymentDiagram'.
+6. CRITICAL: Node and Subgraph IDs MUST be strictly alphanumeric with no spaces. If you need spaces for display names, use label syntax (e.g. ClientEnv["Client Environment"]). 
+7. ALL flowchart connections MUST use standard arrows (e.g., '-->') and be placed on their own separate lines. Do not write multiple disconnected nodes on the same line. Do not apologize or return conversational text.
 
 Generate the ${diagramType} diagram Mermaid syntax now.
 `;

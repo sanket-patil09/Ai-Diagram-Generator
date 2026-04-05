@@ -5,7 +5,6 @@ import { Download, ZoomIn, ZoomOut, RefreshCcw } from 'lucide-react';
 
 mermaid.initialize({
   startOnLoad: false,
-  theme: 'dark',
   securityLevel: 'loose',
   fontFamily: 'Inter, sans-serif'
 });
@@ -58,6 +57,13 @@ export default function DiagramViewer({ chart }) {
       setError(null);
 
       try {
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: 'dark',
+          securityLevel: 'loose',
+          fontFamily: 'Inter, sans-serif'
+        });
+
         const id = `mermaidSvg-${Math.round(Math.random() * 1000000)}`;
         const { svg } = await mermaid.render(id, chart);
 
@@ -122,8 +128,8 @@ export default function DiagramViewer({ chart }) {
           <button
             onClick={handleZoomIn}
             style={{
-              background: 'rgba(255,255,255,0.1)',
-              border: 'none',
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--glass-border)',
               padding: '0.5rem',
               borderRadius: '8px',
               cursor: 'pointer',
@@ -141,8 +147,8 @@ export default function DiagramViewer({ chart }) {
           <button
             onClick={handleZoomOut}
             style={{
-              background: 'rgba(255,255,255,0.1)',
-              border: 'none',
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--glass-border)',
               padding: '0.5rem',
               borderRadius: '8px',
               cursor: 'pointer',
@@ -160,8 +166,8 @@ export default function DiagramViewer({ chart }) {
           <button
             onClick={handleReset}
             style={{
-              background: 'rgba(255,255,255,0.1)',
-              border: 'none',
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--glass-border)',
               padding: '0.5rem',
               borderRadius: '8px',
               cursor: 'pointer',
@@ -179,8 +185,8 @@ export default function DiagramViewer({ chart }) {
           <button
             onClick={handleDownload}
             style={{
-              background: 'rgba(255,255,255,0.1)',
-              border: 'none',
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--glass-border)',
               padding: '0.5rem',
               borderRadius: '8px',
               cursor: 'pointer',
@@ -202,7 +208,7 @@ export default function DiagramViewer({ chart }) {
           <p style={{ fontWeight: 'bold' }}>Diagram Error</p>
           <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>{error}</p>
           <div style={{
-            background: 'rgba(0,0,0,0.3)',
+            background: 'var(--error-bg)',
             padding: '1rem',
             borderRadius: '8px',
             marginTop: '1rem',

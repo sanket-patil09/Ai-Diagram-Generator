@@ -52,11 +52,9 @@ export default function Home() {
 
   return (
     <main className="main-layout" suppressHydrationWarning>
-      {/* Background blobs for aesthetic */}
-      <div className="blob blob-1"></div>
-      <div className="blob blob-2"></div>
+      {/* Clean Background */}
 
-      <header className="hero">
+      <header className="hero" style={{ paddingTop: '1rem' }}>
         <h1 suppressHydrationWarning>
           Visualize Code with <br />
           <span className="title-gradient">Arch-Flow</span>
@@ -125,7 +123,33 @@ export default function Home() {
         </aside>
 
         <section className="main-content">
-          <DiagramViewer chart={diagramChart} />
+          {loading ? (
+            <div className="diagram-container glass-panel" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2rem', width: '100%', height: '100%', minHeight: '500px' }}>
+              <div style={{ position: 'relative', width: '300px', height: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', marginTop: '2rem' }}>
+                <div className="skeleton-box" style={{ width: '140px', height: '45px', animationDelay: '0s' }}></div>
+                <div style={{ position: 'absolute', top: '45px', left: '50%', width: '2px', height: '24px', background: 'var(--skeleton-bg)', animation: 'pulse-skeleton 1.5s infinite ease-in-out', animationDelay: '0.1s' }}></div>
+                
+                <div style={{ display: 'flex', gap: '3rem', width: '100%', justifyContent: 'center' }}>
+                  <div className="skeleton-box" style={{ width: '110px', height: '45px', animationDelay: '0.2s' }}></div>
+                  <div className="skeleton-box" style={{ width: '110px', height: '45px', animationDelay: '0.4s' }}></div>
+                </div>
+                
+                <div style={{ position: 'absolute', top: '114px', left: '16%', width: '2px', height: '24px', background: 'var(--skeleton-bg)', animation: 'pulse-skeleton 1.5s infinite ease-in-out', animationDelay: '0.3s' }}></div>
+                <div style={{ position: 'absolute', top: '114px', left: '84%', width: '2px', height: '24px', background: 'var(--skeleton-bg)', animation: 'pulse-skeleton 1.5s infinite ease-in-out', animationDelay: '0.5s' }}></div>
+
+                <div style={{ display: 'flex', gap: '3rem', width: '100%', justifyContent: 'center' }}>
+                  <div className="skeleton-box" style={{ width: '90px', height: '40px', animationDelay: '0.6s' }}></div>
+                  <div className="skeleton-box" style={{ width: '90px', height: '40px', animationDelay: '0.8s' }}></div>
+                </div>
+              </div>
+              <div style={{ color: 'var(--text-muted)', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem', animation: 'pulse-skeleton 1.5s infinite ease-in-out', animationDelay: '1s' }}>
+                <span className="loader" style={{ width: '18px', height: '18px', borderWidth: '2px' }}></span>
+                AI is analyzing structure...
+              </div>
+            </div>
+          ) : (
+            <DiagramViewer chart={diagramChart} />
+          )}
         </section>
       </div>
 
@@ -133,7 +157,7 @@ export default function Home() {
       <footer style={{
         marginTop: '3rem',
         padding: '2.5rem 1rem 1.5rem',
-        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+        borderTop: '1px solid var(--glass-border)',
         textAlign: 'center',
         color: 'var(--text-muted)',
         fontSize: '0.9rem',
@@ -143,7 +167,7 @@ export default function Home() {
         gap: '0.8rem',
         zIndex: 5,
         width: '100%',
-        background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)'
+        background: 'var(--footer-gradient)'
       }}>
         <div style={{ display: 'flex', gap: '2rem', marginBottom: '0.8rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <a href="#" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-main)', textDecoration: 'none', transition: 'color 0.2s', cursor: 'pointer' }}>Documentation</a>
