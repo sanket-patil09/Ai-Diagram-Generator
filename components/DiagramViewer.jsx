@@ -5,7 +5,7 @@ import { Download, ZoomIn, ZoomOut, RefreshCcw } from 'lucide-react';
 
 mermaid.initialize({
   startOnLoad: false,
-  securityLevel: 'loose',
+  securityLevel: 'strict',
   fontFamily: 'Inter, sans-serif'
 });
 
@@ -60,7 +60,7 @@ export default function DiagramViewer({ chart }) {
         mermaid.initialize({
           startOnLoad: false,
           theme: 'dark',
-          securityLevel: 'loose',
+          securityLevel: 'strict',
           fontFamily: 'Inter, sans-serif'
         });
 

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import DiagramTypeSelector from '@/components/DiagramTypeSelector';
 import DiagramViewer from '@/components/DiagramViewer';
-import { Link, Zap } from 'lucide-react';
+import { Link, Zap, PenTool } from 'lucide-react';
 import styles from './page.module.css'; // Just keeping this if nextjs needs it, though we rely on globals
 
 export default function Home() {
@@ -125,26 +125,28 @@ export default function Home() {
         <section className="main-content">
           {loading ? (
             <div className="diagram-container glass-panel" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2rem', width: '100%', height: '100%', minHeight: '500px' }}>
-              <div style={{ position: 'relative', width: '300px', height: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', marginTop: '2rem' }}>
-                <div className="skeleton-box" style={{ width: '140px', height: '45px', animationDelay: '0s' }}></div>
-                <div style={{ position: 'absolute', top: '45px', left: '50%', width: '2px', height: '24px', background: 'var(--skeleton-bg)', animation: 'pulse-skeleton 1.5s infinite ease-in-out', animationDelay: '0.1s' }}></div>
+              
+              <div className="drawing-animation-container">
+                <svg width="240" height="240" viewBox="0 0 240 240" className="drawing-svg">
+                  {/* Boxes */}
+                  <rect x="80" y="30" width="80" height="50" rx="6" className="draw-path" />
+                  <rect x="20" y="150" width="80" height="50" rx="6" className="draw-path delay-1" />
+                  <rect x="140" y="150" width="80" height="50" rx="6" className="draw-path delay-2" />
+                  
+                  {/* Lines */}
+                  <path d="M 120 80 L 60 150" className="draw-path delay-3" />
+                  <path d="M 120 80 L 180 150" className="draw-path delay-4" />
+                </svg>
                 
-                <div style={{ display: 'flex', gap: '3rem', width: '100%', justifyContent: 'center' }}>
-                  <div className="skeleton-box" style={{ width: '110px', height: '45px', animationDelay: '0.2s' }}></div>
-                  <div className="skeleton-box" style={{ width: '110px', height: '45px', animationDelay: '0.4s' }}></div>
-                </div>
-                
-                <div style={{ position: 'absolute', top: '114px', left: '16%', width: '2px', height: '24px', background: 'var(--skeleton-bg)', animation: 'pulse-skeleton 1.5s infinite ease-in-out', animationDelay: '0.3s' }}></div>
-                <div style={{ position: 'absolute', top: '114px', left: '84%', width: '2px', height: '24px', background: 'var(--skeleton-bg)', animation: 'pulse-skeleton 1.5s infinite ease-in-out', animationDelay: '0.5s' }}></div>
-
-                <div style={{ display: 'flex', gap: '3rem', width: '100%', justifyContent: 'center' }}>
-                  <div className="skeleton-box" style={{ width: '90px', height: '40px', animationDelay: '0.6s' }}></div>
-                  <div className="skeleton-box" style={{ width: '90px', height: '40px', animationDelay: '0.8s' }}></div>
+                <div className="floating-pencil">
+                  <PenTool size={36} color="var(--accent-primary)" />
                 </div>
               </div>
-              <div style={{ color: 'var(--text-muted)', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem', animation: 'pulse-skeleton 1.5s infinite ease-in-out', animationDelay: '1s' }}>
-                <span className="loader" style={{ width: '18px', height: '18px', borderWidth: '2px' }}></span>
-                AI is analyzing structure...
+
+              <div style={{ color: 'var(--text-muted)', fontSize: '1.2rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', fontWeight: '500' }}>
+                <span className="jumping-dots">
+                  <span>Drafting Architecture</span><span>.</span><span>.</span><span>.</span>
+                </span>
               </div>
             </div>
           ) : (
