@@ -41,27 +41,6 @@ The parsed lightweight topology is handed to the Google Gemini model. A strictly
 
 ---
 
-## 🚀 Quick Setup Guide
-
-1. **Install Dependencies**
-   ```bash
-   npm install
-   ```
-
-2. **Supply your API Key**
-   At the root of the project, edit the `.env.local` file by popping in your active Gemini Token:
-   ```env
-   GEMINI_API_KEY="your_actual_key_here"
-   ```
-
-3. **Fire Up The Engine**
-   ```bash
-   npm run dev
-   ```
-   Open your browser to `http://localhost:3000` (or whichever port Next.js automatically assigns you, often `3001` if running concurrent projects).
-
----
-
 ## 🔒 Limitations & Rules Applied
 - Mermaid does not naturally parse string declarations (like "The user logs in") within Entity Relation structures (`erDiagram`). Our AI prompt specifically blocks description hallucination to secure compile safety.
 - The default model enforces `gemini-2.5-flash` natively to bypass the extremely strict Rate Limit quotas (RPM) imposed upon pro-tier Free API usage structures.
